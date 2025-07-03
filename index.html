@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAPA Gurugedara - Learning Management System</title>
+    <meta name="description" content="MAPA Gurugedara - Best online English and Tamil courses with Learning Management System">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #fcc 0%, #fff 100%);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .logo span {
+            margin-left: 10px;
+        }
+
+        .auth-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .phone {
+            color: #666;
+            font-size: 16px;
+            margin-left: 15px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #33FF33 0%, #00FF7F 100%);
+            border: 2px solid #1F35FF;
+            border-radius: 15px;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .demo-info {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .user-info h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .user-role {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Course Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .course-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            opacity: 0.7;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .demo-accounts {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .demo-account {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-account:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .demo-account h4 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .demo-account p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* User Type Selection */
+        .user-types {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .user-type {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .user-type:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .user-type h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .user-type p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #fcc 0%, #fff 100%);
+            text-align: center;
+            padding: 20px;
+            color: #C00;
+            font-weight: bold;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .auth-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Loading spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" onclick="showHomePage()">
+                    🎓 <span>MAPA Gurugedara</span>
+                </a>
+                <div class="auth-section">
+                    <div id="authButtons">
+                        <button class="btn btn-primary" onclick="openModal('loginModal')">Login</button>
+                        <button class="btn btn-secondary" onclick="openModal('registerModal')">Create Account</button>
+                    </div>
+                    <div id="userMenu" class="hidden">
+                        <span id="userName"></span>
+                        <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                    </div>
+                    <div class="phone">📞 071 8 111 600</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Home Page -->
+            <div id="homePage">
+                <div class="hero">
+                    <h1>🎓 MAPA Gurugedara Learning Management System</h1>
+                    <p>Premium Education with Modern Technology</p>
+                    <div class="demo-info">
+                        <h3>🎮 Try Our Demo!</h3>
+                        <p>Experience the full LMS with different user roles</p>
+                        <p>Click Login and use the demo account buttons to test different features</p>
+                    </div>
+                </div>
+
+                <div class="dashboard">
+                    <h2 style="text-align: center; margin-bottom: 30px;">🎯 Our Educational Solutions</h2>
+                    <div class="courses-grid" id="publicCourses">
+                        <!-- Courses will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="dashboard">
+                    <h2 style="text-align: center; margin-bottom: 30px;">✨ Why Choose MAPA Gurugedara?</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">7</div>
+                            <div class="stat-label">Total Courses</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Active Students</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Expert Teachers</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Learning Access</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Pages -->
+            <div id="studentDashboard" class="hidden">
+                <div class="dashboard">
+                    <div class="dashboard-header">
+                        <div class="user-info">
+                            <h2>Welcome back, <span id="studentName"></span>! 👨‍🎓</h2>
+                            <span class="user-role">Student</span>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="enrolledCourses">0</div>
+                            <div class="stat-label">Enrolled Courses</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="completedLessons">0</div>
+                            <div class="stat-label">Completed Lessons</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="achievements">0</div>
+                            <div class="stat-label">Achievements</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="studyTime">0h</div>
+                            <div class="stat-label">Study Time</div>
+                        </div>
+                    </div>
+                    <h3>📚 My Courses</h3>
+                    <div class="courses-grid" id="studentCourses">
+                        <!-- Student courses will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="teacherDashboard" class="hidden">
+                <div class="dashboard">
+                    <div class="dashboard-header">
+                        <div class="user-info">
+                            <h2>Teacher Dashboard - <span id="teacherName"></span> 👩‍🏫</h2>
+                            <span class="user-role">Teacher</span>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="teacherCourses">0</div>
+                            <div class="stat-label">My Courses</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="myStudents">0</div>
+                            <div class="stat-label">My Students</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalLessons">0</div>
+                            <div class="stat-label">Total Lessons</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">85%</div>
+                            <div class="stat-label">Avg. Progress</div>
+                        </div>
+                    </div>
+                    <h3>👥 My Students</h3>
+                    <div id="teacherStudents">
+                        <!-- Teacher's students will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="adminDashboard" class="hidden">
+                <div class="dashboard">
+                    <div class="dashboard-header">
+                        <div class="user-info">
+                            <h2>Admin Dashboard - <span id="adminName"></span> ⚙️</h2>
+                            <span class="user-role" id="adminRole">Administrator</span>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalUsers">0</div>
+                            <div class="stat-label">Total Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalStudents">0</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalTeachers">0</div>
+                            <div class="stat-label">Teachers</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalCourses">0</div>
+                            <div class="stat-label">Courses</div>
+                        </div>
+                    </div>
+                    <div id="adminContent">
+                        <!-- Admin content will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('loginModal')">&times;</span>
+                <h2>🔐 Login to Your Account</h2>
+            </div>
+            <div class="modal-body">
+                <div id="loginMessage"></div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <span id="loginButtonText">Login</span>
+                        <span id="loginSpinner" class="loading hidden"></span>
+                    </button>
+                </form>
+
+                <div class="demo-accounts">
+                    <h3 style="text-align: center; margin-bottom: 15px;">🎯 Demo Accounts - Click to Auto-Fill:</h3>
+                    
+                    <div class="demo-account" onclick="fillLogin('amal@student.com', 'student123')">
+                        <h4>👨‍🎓 Student - Amal Perera</h4>
+                        <p>amal@student.com / student123</p>
+                    </div>
+                    
+                    <div class="demo-account" onclick="fillLogin('priyanka@teacher.com', 'teacher123')">
+                        <h4>👩‍🏫 Teacher - Mrs. Priyanka</h4>
+                        <p>priyanka@teacher.com / teacher123</p>
+                    </div>
+                    
+                    <div class="demo-account" onclick="fillLogin('mahesh@courseadmin.com', 'admin123')">
+                        <h4>📚 Course Admin - Dr. Mahesh</h4>
+                        <p>mahesh@courseadmin.com / admin123</p>
+                    </div>
+                    
+                    <div class="demo-account" onclick="fillLogin('kanishka@siteadmin.com', 'admin123')">
+                        <h4>⚙️ Site Admin - Kanishka</h4>
+                        <p>kanishka@siteadmin.com / admin123</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 20px;">
+                    Don't have an account? <a href="#" onclick="closeModal('loginModal');openModal('registerModal')">Create one here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('registerModal')">&times;</span>
+                <h2>🚀 Create Your Account</h2>
+            </div>
+            <div class="modal-body">
+                <div id="registerMessage"></div>
+                
+                <!-- User Type Selection -->
+                <div id="userTypeSelection">
+                    <h3>Select Your Role:</h3>
+                    <div class="user-types">
+                        <div class="user-type" onclick="selectUserType('student')">
+                            <h3>👨‍🎓 Student</h3>
+                            <p>Access courses and track your learning progress</p>
+                        </div>
+                        <div class="user-type" onclick="selectUserType('teacher')">
+                            <h3>👩‍🏫 Teacher</h3>
+                            <p>Create and manage courses for students</p>
+                        </div>
+                        <div class="user-type" onclick="selectUserType('admin')">
+                            <h3>⚙️ Administrator</h3>
+                            <p>Manage the entire learning system</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registration Forms -->
+                <div id="registrationForms" class="hidden">
+                    <button class="btn btn-secondary" onclick="showUserTypeSelection()" style="margin-bottom: 20px;">← Back</button>
+                    
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="registerName">Full Name:</label>
+                            <input type="text" id="registerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email Address:</label>
+                            <input type="email" id="registerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPhone">Phone Number:</label>
+                            <input type="tel" id="registerPhone" required>
+                        </div>
+                        
+                        <!-- Student specific fields -->
+                        <div id="studentFields" class="hidden">
+                            <div class="form-group">
+                                <label for="studentGrade">Grade/Level:</label>
+                                <select id="studentGrade">
+                                    <option value="">Select Grade</option>
+                                    <option value="grade1-5">Grade 1-5</option>
+                                    <option value="grade6-9">Grade 6-9</option>
+                                    <option value="grade10-11">Grade 10-11 (O/L)</option>
+                                    <option value="grade12-13">Grade 12-13 (A/L)</option>
+                                    <option value="adult">Adult Learner</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Teacher specific fields -->
+                        <div id="teacherFields" class="hidden">
+                            <div class="form-group">
+                                <label for="teacherSubject">Subject Specialization:</label>
+                                <select id="teacherSubject">
+                                    <option value="">Select Subject</option>
+                                    <option value="english">English Language</option>
+                                    <option value="tamil">Tamil Language</option>
+                                    <option value="both">Both English & Tamil</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="teacherExperience">Teaching Experience (Years):</label>
+                                <input type="number" id="teacherExperience" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="teacherQualifications">Qualifications:</label>
+                                <textarea id="teacherQualifications" placeholder="List your educational qualifications"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Admin specific fields -->
+                        <div id="adminFields" class="hidden">
+                            <div class="form-group">
+                                <label for="adminType">Admin Type:</label>
+                                <select id="adminType">
+                                    <option value="">Select Type</option>
+                                    <option value="site_admin">Site Administrator</option>
+                                    <option value="course_admin">Course Administrator</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="adminDepartment">Department:</label>
+                                <input type="text" id="adminDepartment" placeholder="e.g., English Department">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerPassword">Password:</label>
+                            <input type="password" id="registerPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" id="confirmPassword" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <span id="registerButtonText">Create Account</span>
+                            <span id="registerSpinner" class="loading hidden"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2025 MAPA Gurugedara - Excellence in Education | Call: 071 8 111 600
+    </footer>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let selectedUserType = '';
+
+        // Sample courses data
+        const coursesData = [
+            {
+                id: 1,
+                title: 'Total English Solution',
+                description: 'Complete English mastery program covering all aspects from basic to advanced levels',
+                category: 'english',
+                level: 'beginner',
+                duration: '12 months',
+                lessons: 15,
+                students: 120,
+                image: '📚 Total English'
+            },
+            {
+                id: 2,
+                title: 'English ABCD',
+                description: 'Foundation English for young learners focusing on alphabet and basic vocabulary',
+                category: 'english',
+                level: 'beginner',
+                duration: '6 months',
+                lessons: 8,
+                students: 85,
+                image: '🔤 English ABCD'
+            },
+            {
+                id: 3,
+                title: 'My First 1000 Words',
+                description: 'Essential vocabulary building program with visual learning',
+                category: 'english',
+                level: 'beginner',
+                duration: '8 months',
+                lessons: 12,
+                students: 95,
+                image: '📖 1000 Words'
+            },
+            {
+                id: 4,
+                title: 'Basic English',
+                description: 'Fundamental English skills for everyday communication',
+                category: 'english',
+                level: 'beginner',
+                duration: '10 months',
+                lessons: 10,
+                students: 110,
+                image: '🎯 Basic English'
+            },
+            {
+                id: 5,
+                title: 'English for O/L',
+                description: 'Comprehensive English preparation for Ordinary Level examinations',
+                category: 'english',
+                level: 'intermediate',
+                duration: '18 months',
+                lessons: 20,
+                students: 75,
+                image: '🎓 O/L English'
+            },
+            {
+                id: 6,
+                title: 'Tamil for Beginners',
+                description: 'Introduction to Tamil language and script',
+                category: 'tamil',
+                level: 'beginner',
+                duration: '12 months',
+                lessons: 14,
+                students: 60,
+                image: '🌟 Tamil Basics'
+            },
+            {
+                id: 7,
+                title: 'Advanced Tamil',
+                description: 'Advanced Tamil language skills and literature',
+                category: 'tamil',
+                level: 'advanced',
+                duration: '15 months',
+                lessons: 18,
+                students: 40,
+                image: '📜 Advanced Tamil'
+            }
+        ];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            // Initialize dummy data if not exists
+            initializeDummyData();
+            
+            // Check for saved user session
+            const savedUser = localStorage.getItem('mapaCurrentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showDashboard();
+            } else {
+                showHomePage();
+            }
+            
+            // Populate public courses
+            populatePublicCourses();
+            
+            // Setup form event listeners
+            setupEventListeners();
+        }
+
+        function initializeDummyData() {
+            // Initialize users if not exists
+            if (!localStorage.getItem('mapaUsers')) {
+                const dummyUsers = [
+                    // Students
+                    {
+                        id: 1,
+                        name: 'Amal Perera',
+                        email: 'amal@student.com',
+                        password: 'student123',
+                        role: 'student',
+                        phone: '+94771234567',
+                        grade: 'grade10-11',
+                        enrolledCourses: [1, 4, 7],
+                        completedLessons: 8,
+                        achievements: 3,
+                        studyTime: 45,
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        name: 'Saman Silva',
+                        email: 'saman@student.com',
+                        password: 'student123',
+                        role: 'student',
+                        phone: '+94771234568',
+                        grade: 'grade12-13',
+                        enrolledCourses: [1, 5],
+                        completedLessons: 12,
+                        achievements: 4,
+                        studyTime: 62,
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 3,
+                        name: 'Kamala Jayasinghe',
+                        email: 'kamala@student.com',
+                        password: 'student123',
+                        role: 'student',
+                        phone: '+94771234570',
+                        grade: 'grade6-9',
+                        enrolledCourses: [2, 4, 6],
+                        completedLessons: 6,
+                        achievements: 2,
+                        studyTime: 28,
+                        createdAt: new Date().toISOString()
+                    },
+                    // Teachers
+                    {
+                        id: 4,
+                        name: 'Mrs. Priyanka Wijesinghe',
+                        email: 'priyanka@teacher.com',
+                        password: 'teacher123',
+                        role: 'teacher',
+                        phone: '+94771234572',
+                        subject: 'english',
+                        experience: 8,
+                        qualifications: 'B.A. in English Literature, TESOL Certificate',
+                        assignedCourses: [1, 2, 4, 5],
+                        students: [1, 2, 3],
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 5,
+                        name: 'Mr. Sunil Rajapaksa',
+                        email: 'sunil@teacher.com',
+                        password: 'teacher123',
+                        role: 'teacher',
+                        phone: '+94771234573',
+                        subject: 'tamil',
+                        experience: 12,
+                        qualifications: 'M.A. in Tamil Literature, Teaching Diploma',
+                        assignedCourses: [6, 7],
+                        students: [1, 3],
+                        createdAt: new Date().toISOString()
+                    },
+                    // Admins
+                    {
+                        id: 6,
+                        name: 'Dr. Mahesh Gunasekara',
+                        email: 'mahesh@courseadmin.com',
+                        password: 'admin123',
+                        role: 'course_admin',
+                        phone: '+94771234575',
+                        department: 'English Department',
+                        managedCourses: [1, 2, 3, 4, 5],
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 7,
+                        name: 'Kanishka Jayathilaka',
+                        email: 'kanishka@siteadmin.com',
+                        password: 'admin123',
+                        role: 'site_admin',
+                        phone: '+94718111600',
+                        department: 'IT Administration',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('mapaUsers', JSON.stringify(dummyUsers));
+            }
+
+            // Initialize courses if not exists
+            if (!localStorage.getItem('mapaCourses')) {
+                localStorage.setItem('mapaCourses', JSON.stringify(coursesData));
+            }
+        }
+
+        function setupEventListeners() {
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            
+            // Register form
+            document.getElementById('registerForm').addEventListener('submit', handleRegister);
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    closeModal(event.target.id);
+                }
+            });
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            clearMessages();
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            if (modalId === 'registerModal') {
+                showUserTypeSelection();
+            }
+            clearMessages();
+        }
+
+        function clearMessages() {
+            document.getElementById('loginMessage').innerHTML = '';
+            document.getElementById('registerMessage').innerHTML = '';
+        }
+
+        function showMessage(elementId, message, type = 'error') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="message ${type}">${message}</div>`;
+        }
+
+        // User type selection
+        function selectUserType(userType) {
+            selectedUserType = userType;
+            document.getElementById('userTypeSelection').classList.add('hidden');
+            document.getElementById('registrationForms').classList.remove('hidden');
+            
+            // Show/hide specific fields
+            document.getElementById('studentFields').classList.add('hidden');
+            document.getElementById('teacherFields').classList.add('hidden');
+            document.getElementById('adminFields').classList.add('hidden');
+            
+            if (userType === 'student') {
+                document.getElementById('studentFields').classList.remove('hidden');
+            } else if (userType === 'teacher') {
+                document.getElementById('teacherFields').classList.remove('hidden');
+            } else if (userType === 'admin') {
+                document.getElementById('adminFields').classList.remove('hidden');
+            }
+        }
+
+        function showUserTypeSelection() {
+            document.getElementById('userTypeSelection').classList.remove('hidden');
+            document.getElementById('registrationForms').classList.add('hidden');
+            selectedUserType = '';
+        }
+
+        // Authentication functions
+        function fillLogin(email, password) {
+            document.getElementById('loginEmail').value = email;
+            document.getElementById('loginPassword').value = password;
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Show loading
+            document.getElementById('loginButtonText').classList.add('hidden');
+            document.getElementById('loginSpinner').classList.remove('hidden');
+            
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            const users = JSON.parse(localStorage.getItem('mapaUsers') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('mapaCurrentUser', JSON.stringify(user));
+                closeModal('loginModal');
+                showDashboard();
+                showMessage('loginMessage', 'Login successful!', 'success');
+            } else {
+                showMessage('loginMessage', 'Invalid email or password. Please try again.');
+            }
+            
+            // Hide loading
+            document.getElementById('loginButtonText').classList.remove('hidden');
+            document.getElementById('loginSpinner').classList.add('hidden');
+        }
+
+        async function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showMessage('registerMessage', 'Passwords do not match.');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('registerButtonText').classList.add('hidden');
+            document.getElementById('registerSpinner').classList.remove('hidden');
+            
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            const users = JSON.parse(localStorage.getItem('mapaUsers') || '[]');
+            
+            // Check if user already exists
+            if (users.find(u => u.email === email)) {
+                showMessage('registerMessage', 'An account with this email already exists.');
+                document.getElementById('registerButtonText').classList.remove('hidden');
+                document.getElementById('registerSpinner').classList.add('hidden');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: users.length + 1,
+                name,
+                email,
+                password,
+                phone,
+                role: selectedUserType,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Add role-specific data
+            if (selectedUserType === 'student') {
+                newUser.grade = document.getElementById('studentGrade').value;
+                newUser.enrolledCourses = [];
+                newUser.completedLessons = 0;
+                newUser.achievements = 0;
+                newUser.studyTime = 0;
+            } else if (selectedUserType === 'teacher') {
+                newUser.subject = document.getElementById('teacherSubject').value;
+                newUser.experience = parseInt(document.getElementById('teacherExperience').value) || 0;
+                newUser.qualifications = document.getElementById('teacherQualifications').value;
+                newUser.assignedCourses = [];
+                newUser.students = [];
+            } else if (selectedUserType === 'admin') {
+                newUser.role = document.getElementById('adminType').value;
+                newUser.department = document.getElementById('adminDepartment').value;
+                if (newUser.role === 'course_admin') {
+                    newUser.managedCourses = [];
+                }
+            }
+            
+            users.push(newUser);
+            localStorage.setItem('mapaUsers', JSON.stringify(users));
+            
+            showMessage('registerMessage', 'Account created successfully! You can now login.', 'success');
+            
+            // Reset form
+            document.getElementById('registerForm').reset();
+            showUserTypeSelection();
+            
+            // Hide loading
+            document.getElementById('registerButtonText').classList.remove('hidden');
+            document.getElementById('registerSpinner').classList.add('hidden');
+            
+            // Auto close modal after 2 seconds
+            setTimeout(() => {
+                closeModal('registerModal');
+                openModal('loginModal');
+            }, 2000);
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('mapaCurrentUser');
+            showHomePage();
+        }
+
+        // Page navigation
+        function showHomePage() {
+            // Hide all dashboards
+            document.getElementById('studentDashboard').classList.add('hidden');
+            document.getElementById('teacherDashboard').classList.add('hidden');
+            document.getElementById('adminDashboard').classList.add('hidden');
+            
+            // Show home page
+            document.getElementById('homePage').classList.remove('hidden');
+            
+            // Update header
+            document.getElementById('authButtons').classList.remove('hidden');
+            document.getElementById('userMenu').classList.add('hidden');
+        }
+
+        function showDashboard() {
+            // Hide home page
+            document.getElementById('homePage').classList.add('hidden');
+            
+            // Update header
+            document.getElementById('authButtons').classList.add('hidden');
+            document.getElementById('userMenu').classList.remove('hidden');
+            document.getElementById('userName').textContent = currentUser.name;
+            
+            // Show appropriate dashboard
+            if (currentUser.role === 'student') {
+                showStudentDashboard();
+            } else if (currentUser.role === 'teacher') {
+                showTeacherDashboard();
+            } else if (currentUser.role === 'course_admin' || currentUser.role === 'site_admin') {
+                showAdminDashboard();
+            }
+        }
+
+        function showStudentDashboard() {
+            document.getElementById('studentDashboard').classList.remove('hidden');
+            document.getElementById('studentName').textContent = currentUser.name;
+            
+            // Update stats
+            document.getElementById('enrolledCourses').textContent = currentUser.enrolledCourses?.length || 0;
+            document.getElementById('completedLessons').textContent = currentUser.completedLessons || 0;
+            document.getElementById('achievements').textContent = currentUser.achievements || 0;
+            document.getElementById('studyTime').textContent = (currentUser.studyTime || 0) + 'h';
+            
+            // Populate student courses
+            populateStudentCourses();
+        }
+
+        function showTeacherDashboard() {
+            document.getElementById('teacherDashboard').classList.remove('hidden');
+            document.getElementById('teacherName').textContent = currentUser.name;
+            
+            // Update stats
+            document.getElementById('teacherCourses').textContent = currentUser.assignedCourses?.length || 0;
+            document.getElementById('myStudents').textContent = currentUser.students?.length || 0;
+            
+            const totalLessons = (currentUser.assignedCourses || []).reduce((total, courseId) => {
+                const course = coursesData.find(c => c.id === courseId);
+                return total + (course?.lessons || 0);
+            }, 0);
+            document.getElementById('totalLessons').textContent = totalLessons;
+            
+            // Populate teacher students
+            populateTeacherStudents();
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            document.getElementById('adminName').textContent = currentUser.name;
+            document.getElementById('adminRole').textContent = 
+                currentUser.role === 'site_admin' ? 'Site Administrator' : 'Course Administrator';
+            
+            const users = JSON.parse(localStorage.getItem('mapaUsers') || '[]');
+            
+            // Update stats
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('totalStudents').textContent = users.filter(u => u.role === 'student').length;
+            document.getElementById('totalTeachers').textContent = users.filter(u => u.role === 'teacher').length;
+            document.getElementById('totalCourses').textContent = coursesData.length;
+            
+            // Populate admin content
+            populateAdminContent();
+        }
+
+        // Content population functions
+        function populatePublicCourses() {
+            const container = document.getElementById('publicCourses');
+            container.innerHTML = '';
+            
+            coursesData.forEach(course => {
+                const courseCard = createCourseCard(course, false);
+                container.appendChild(courseCard);
+            });
+        }
+
+        function populateStudentCourses() {
+            const container = document.getElementById('studentCourses');
+            container.innerHTML = '';
+            
+            if (!currentUser.enrolledCourses || currentUser.enrolledCourses.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1;">No courses enrolled yet. Contact your teacher or admin to get enrolled.</p>';
+                return;
+            }
+            
+            currentUser.enrolledCourses.forEach(courseId => {
+                const course = coursesData.find(c => c.id === courseId);
+                if (course) {
+                    const courseCard = createCourseCard(course, true);
+                    container.appendChild(courseCard);
+                }
+            });
+        }
+
+        function populateTeacherStudents() {
+            const container = document.getElementById('teacherStudents');
+            container.innerHTML = '';
+            
+            if (!currentUser.students || currentUser.students.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">No students assigned yet.</p>';
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('mapaUsers') || '[]');
+            
+            currentUser.students.forEach(studentId => {
+                const student = users.find(u => u.id === studentId);
+                if (student) {
+                    const studentCard = createStudentCard(student);
+                    container.appendChild(studentCard);
+                }
+            });
+        }
+
+        function populateAdminContent() {
+            const container = document.getElementById('adminContent');
+            container.innerHTML = '';
+            
+            if (currentUser.role === 'site_admin') {
+                container.innerHTML = `
+                    <h3>👥 User Management</h3>
+                    <div id="usersList"></div>
+                    <h3 style="margin-top: 30px;">🖥️ System Status</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div style="font-size: 2em; margin-bottom: 10px;">✅</div>
+                            <div style="font-weight: bold;">Server Status</div>
+                            <div style="color: #28a745;">Online</div>
+                        </div>
+                        <div class="stat-card">
+                            <div style="font-size: 2em; margin-bottom: 10px;">💾</div>
+                            <div style="font-weight: bold;">Database</div>
+                            <div style="color: #28a745;">Healthy</div>
+                        </div>
+                        <div class="stat-card">
+                            <div style="font-size: 2em; margin-bottom: 10px;">🔒</div>
+                            <div style="font-weight: bold;">Security</div>
+                            <div style="color: #28a745;">Protected</div>
+                        </div>
+                    </div>
+                `;
+                populateUsersList();
+            } else {
+                container.innerHTML = `
+                    <h3>📚 My Managed Courses</h3>
+                    <div id="managedCourses"></div>
+                    <button class="btn btn-primary" onclick="createNewCourse()" style="margin-top: 20px;">
+                        ➕ Create New Course
+                    </button>
+                `;
+                populateManagedCourses();
+            }
+        }
+
+        function populateUsersList() {
+            const container = document.getElementById('usersList');
+            const users = JSON.parse(localStorage.getItem('mapaUsers') || '[]');
+            
+            container.innerHTML = '';
+            
+            users.forEach(user => {
+                if (user.id !== currentUser.id) {
+                    const userCard = document.createElement('div');
+                    userCard.className = 'stat-card';
+                    userCard.style.textAlign = 'left';
+                    userCard.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h4>${user.name}</h4>
+                                <p style="margin: 5px 0; color: #666;">${user.email}</p>
+                                <span style="background: #667eea; color: white; padding: 4px 8px; border-radius: 10px; font-size: 12px;">
+                                    ${user.role.replace('_', ' ').toUpperCase()}
+                                </span>
+                            </div>
+                            <div>
+                                ${user.role === 'student' ? `
+                                    <button class="btn btn-primary" onclick="promoteUser(${user.id}, 'teacher')" style="font-size: 12px; padding: 6px 12px;">
+                                        Make Teacher
+                                    </button>
+                                ` : ''}
+                                ${user.role === 'teacher' ? `
+                                    <button class="btn btn-primary" onclick="promoteUser(${user.id}, 'course_admin')" style="font-size: 12px; padding: 6px 12px;">
+                                        Make Course Admin
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(userCard);
+                }
+            });
+        }
+
+        function populateManagedCourses() {
+            const container = document.getElementById('managedCourses');
+            container.innerHTML = '';
+            
+            if (!currentUser.managedCourses || currentUser.managedCourses.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">No courses managed yet.</p>';
+                return;
+            }
+            
+            currentUser.managedCourses.forEach(courseId => {
+                const course = coursesData.find(c => c.id === courseId);
+                if (course) {
+                    const courseCard = createCourseCard(course, false, true);
+                    container.appendChild(courseCard);
+                }
+            });
+        }
+
+        // Helper functions
+        function createCourseCard(course, showProgress = false, showManage = false) {
+            const card = document.createElement('div');
+            card.className = 'course-card';
+            
+            const progress = showProgress ? Math.floor(Math.random() * 100) : 0;
+            
+            card.innerHTML = `
+                <div class="course-image">${course.image}</div>
+                <div class="course-content">
+                    <div class="course-title">${course.title}</div>
+                    <div class="course-description">${course.description}</div>
+                    <div class="course-meta">
+                        <span>📚 ${course.lessons} lessons</span>
+                        <span>👥 ${course.students} students</span>
+                        <span>⏱️ ${course.duration}</span>
+                    </div>
+                    ${showProgress ? `
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                        <div style="text-align: center; margin-bottom: 10px; font-size: 14px; color: #666;">
+                            Progress: ${progress}%
+                        </div>
+                    ` : ''}
+                    <button class="btn btn-primary" style="width: 100%;" onclick="${showManage ? `manageCourse(${course.id})` : showProgress ? `continueCourse(${course.id})` : `enrollCourse(${course.id})`}">
+                        ${showManage ? 'Manage Course' : showProgress ? 'Continue Learning' : 'Learn More'}
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function createStudentCard(student) {
+            const card = document.createElement('div');
+            card.className = 'stat-card';
+            card.style.textAlign = 'left';
+            
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4>${student.name}</h4>
+                        <p style="margin: 5px 0; color: #666;">${student.email}</p>
+                        <p style="margin: 5px 0; color: #666;">Grade: ${student.grade}</p>
+                        <div style="margin-top: 10px;">
+                            <span style="background: #28a745; color: white; padding: 4px 8px; border-radius: 10px; font-size: 12px; margin-right: 5px;">
+                                ${student.completedLessons || 0} lessons completed
+                            </span>
+                            <span style="background: #ffc107; color: black; padding: 4px 8px; border-radius: 10px; font-size: 12px;">
+                                ${student.achievements || 0} achievements
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" onclick="viewStudentProgress(${student.id})" style="font-size: 12px; padding: 6px 12px;">
+                            View Progress
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Action functions
+        function enrollCourse(courseId) {
+            if (!currentUser) {
+                openModal('loginModal');
+                return;
+            }
+            
+            if (currentUser.role !== 'student') {
+                alert('Only students can enroll in courses. Please contact an administrator.');
+                return;
+            }
+            
+            alert('Enrollment request sent! An administrator will approve your enrollment soon.');
+        }
+
+        function continueCourse(courseId) {
+            alert('Course viewer would open here. This is a demo version.');
+        }
+
+        function manageCourse(courseId) {
+            alert('Course management interface would open here. This is a demo version.');
+        }
+
+        function promoteUser(userId, newRole) {
+            const users = JSON.parse(localStorage.getItem('mapaUsers') || '[]');
+            const userIndex = users.findIndex(u => u.id === userId);
+            
+            if (userIndex !== -1) {
+                users[userIndex].role = newRole;
+                localStorage.setItem('mapaUsers', JSON.stringify(users));
+                populateUsersList();
+                alert(`User promoted to ${newRole.replace('_', ' ')} successfully!`);
+            }
+        }
+
+        function viewStudentProgress(studentId) {
+            alert('Student progress viewer would open here. This is a demo version.');
+        }
+
+        function createNewCourse() {
+            alert('Course creation interface would open here. This is a demo version.');
+        }
+    </script>
+</body>
+</html>
